@@ -8,7 +8,7 @@ import {
   FlatList,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Eye, MessageCircle, Image, Mic, Edit, Trash2 } from 'lucide-react-native';
+import { Eye, MessageCircle, Image, Mic, CreditCard as Edit, Trash2 } from 'lucide-react-native';
 import { useGlitchCore } from '@/hooks/useGlitchCore';
 
 interface Message {
