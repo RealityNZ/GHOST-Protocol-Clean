@@ -13,6 +13,8 @@ import { useGlitchCore } from '@/hooks/useGlitchCore';
 
 interface Message {
   id: string;
+  messageId: string;
+  userId: string;
   type: 'message' | 'image' | 'voice' | 'edit' | 'delete';
   content: string;
   author: string;
@@ -37,6 +39,8 @@ export default function FeedScreen() {
     const mockMessages: Message[] = [
       {
         id: '1',
+        messageId: '1234567890123456789',
+        userId: '9876543210987654321',
         type: 'message',
         content: 'Anyone up for some late night coding?',
         author: 'CyberDev',
@@ -46,6 +50,8 @@ export default function FeedScreen() {
       },
       {
         id: '2',
+        messageId: '1234567890123456790',
+        userId: '9876543210987654322',
         type: 'image',
         content: 'Screenshot of my latest project',
         author: 'CodeMaster',
@@ -55,6 +61,8 @@ export default function FeedScreen() {
       },
       {
         id: '3',
+        messageId: '1234567890123456791',
+        userId: '9876543210987654323',
         type: 'voice',
         content: 'Voice message about the new API',
         author: 'API_Guru',
@@ -64,6 +72,8 @@ export default function FeedScreen() {
       },
       {
         id: '4',
+        messageId: '1234567890123456792',
+        userId: '9876543210987654324',
         type: 'edit',
         content: 'Updated: Fixed the bug in the authentication system',
         author: 'BugHunter',
@@ -73,6 +83,8 @@ export default function FeedScreen() {
       },
       {
         id: '5',
+        messageId: '1234567890123456793',
+        userId: '9876543210987654325',
         type: 'delete',
         content: 'Message deleted by user',
         author: 'Anonymous',
@@ -130,11 +142,17 @@ export default function FeedScreen() {
         </View>
         <View style={styles.messageInfo}>
           <Text style={styles.author}>{item.author}</Text>
-          <Text style={styles.channel}>#{item.channel}</Text>
+          <View style={styles.channelRow}>
+            <Text style={styles.channel}>#{item.channel}</Text>
+            <Text style={styles.userId}>ID: {item.userId}</Text>
+          </View>
         </View>
         <Text style={styles.timestamp}>
           {new Date(item.timestamp).toLocaleTimeString()}
         </Text>
+      </View>
+      <View style={styles.messageIds}>
+        <Text style={styles.messageId}>MSG: {item.messageId}</Text>
       </View>
       <Text style={[styles.content, { color: getMessageColor(item.type) }]}>
         {item.content}
@@ -295,15 +313,35 @@ const styles = StyleSheet.create({
   messageInfo: {
     flex: 1,
   },
+  channelRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
   author: {
     fontFamily: 'JetBrainsMono-Bold',
     fontSize: 12,
     color: '#FFFFFF',
+    marginBottom: 2,
   },
   channel: {
     fontFamily: 'JetBrainsMono-Regular',
     fontSize: 10,
     color: '#666666',
+  },
+  userId: {
+    fontFamily: 'JetBrainsMono-Regular',
+    fontSize: 9,
+    color: '#FF2EC0',
+    marginLeft: 10,
+  },
+  messageIds: {
+    marginBottom: 8,
+  },
+  messageId: {
+    fontFamily: 'JetBrainsMono-Regular',
+    fontSize: 9,
+    color: '#00FFF7',
   },
   timestamp: {
     fontFamily: 'JetBrainsMono-Regular',
