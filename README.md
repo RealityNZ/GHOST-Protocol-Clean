@@ -1,0 +1,1 @@
+# GHOST Protocol - Clean Foundation
